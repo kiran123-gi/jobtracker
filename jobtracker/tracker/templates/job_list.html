@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Tracker</title>
+    <style>
+
+        body { font-family: Arial; 
+            
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        .btn { padding: 5px 10px; text-decoration: none; }
+    </style>
+</head>
+<body > 
+
+<h2>Job Applications</h2>
+
+<a href="{% url 'add_job' %}">Add Job</a>
+
+<table>
+    <tr>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for job in jobs %}
+    <tr>
+        <td>{{ job.company_name }}</td>
+        <td>{{ job.role }}</td>
+        <td>{{ job.status }}</td>
+        <td>
+            <a href="{% url 'update_job' job.id %}">Edit</a>
+            <a href="{% url 'delete_job' job.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
